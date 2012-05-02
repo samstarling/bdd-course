@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<live_event href="/live_events/<%= live_id %>">
+	<name><%= profile_name %></name>
+
+	<input>
+		<order>2</order>
+		<loop>true</loop>
+		<file_input>
+			<uri>/data/marvin/sport_coming_up.mp4</uri>
+		</file_input>
+	</input>
+
+	<input>
+		<order>1</order>
+		<device_input>
+			<channel>1</channel>
+			<input_format>Auto</input_format>
+			<device_type>AJA</device_type>
+			<device_number><%= device_number %></device_number>
+			<device_id><%= device_id %></device_id>
+		</device_input>
+	</input>
+
+	<input>
+		<order>3</order>
+		<loop>true</loop>
+		<file_input>
+			<uri>/data/marvin/sport_ended.mp4</uri>
+		</file_input>
+	</input>
+
+	<input>
+		<order>4</order>
+		<loop>true</loop>
+		<file_input>
+			<uri>/data/marvin/sport_interrupted.mp4</uri>
+		</file_input>
+	</input>
+
+	<user_data><%= user_data %></user_data>
+	<status><%= status %></status>
+	<% if error_code -%>
+		<error_messages>
+			<error>
+				<code><%= error_code %></code>
+				<message><%= error_msg %></message>
+			</error>
+		</error_messages>
+	<% end -%>
+
+    <audit_messages>
+        <audit>
+            <code>10</code>
+            <created_at>2003-03-03T03:03:03Z</created_at>
+            <message>Initial timecode: 03:03:03:03</message><!-- initial startup: live video -->
+        </audit>
+        <% if switch_timestamp %>
+            <audit>
+                <code>10</code>
+                <created_at><%= (switch_timestamp + 1.second).strftime('%Y-%m-%dT%H:%M:%SZ') %></created_at>
+                <message>Switch to input <%= active_order %>: <%= switch_timestamp.strftime("%H:%M:%S") %>:00</message>
+            </audit>
+        <% end %>
+    </audit_messages>
+
+	<% if start_time -%>
+		<start_time><%= start_time %></start_time>
+	<% end -%>
+	<% if complete_time -%>
+		<complete_time><%= complete_time %></complete_time>
+	<% end -%>
+	<image_inserter>
+		<enable_rest>true</enable_rest>
+	</image_inserter>
+</live_event>
