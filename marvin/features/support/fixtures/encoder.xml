@@ -74,15 +74,5 @@
   		<enable_rest>true</enable_rest>
   	</image_inserter>
   </live_event>
-  <live_event href="/live_events/1000">
-    <name>Broken profile</name>
-    <input>
-      <device_input>
-        <device_number>7</device_number>
-        <device_id>6</device_id>
-      </device_input>
-    </input>
-    <user_data></user_data>
-    <status>pending</status>
-  </live_event>
+  
 </live_event_list>
